@@ -1,4 +1,5 @@
-import java.lang.reflect.InvocationTargetException;
+package Collections;
+
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Scanner;

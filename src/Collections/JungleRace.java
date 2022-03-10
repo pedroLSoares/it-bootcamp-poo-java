@@ -1,4 +1,5 @@
-import java.util.HashMap;
+package Collections;
+
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class JungleRace {
         boolean included = participants.add(participant);
 
         if(!included){
-            System.out.println("Participant is already registered");
+            System.out.println("Collections.Participant is already registered");
             return -1;
         }
 

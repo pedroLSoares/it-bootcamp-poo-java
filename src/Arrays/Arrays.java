@@ -1,3 +1,5 @@
+package Arrays;
+
 import netscape.javascript.JSObject;
 
 import java.util.*;

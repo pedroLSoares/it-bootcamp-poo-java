@@ -1,4 +1,5 @@
-import java.util.Comparator;
+package Collections;
+
 import java.util.HashMap;
 import java.util.Map;
 
