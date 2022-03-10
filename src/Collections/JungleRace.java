@@ -11,7 +11,6 @@ public class JungleRace {
     public String course;
     public Set<Participant> participants = new HashSet<>();
 
-    public static Map<String, Object> smallCircuit = Map.of("distance", "2km", "Course", "Selvas e riachos", "participants", new HashSet<Participant>());
 
     public JungleRace(Integer kmSize, String description, String course) {
         this.kmSize = kmSize;
@@ -28,7 +27,7 @@ public class JungleRace {
         boolean included = participants.add(participant);
 
         if(!included){
-            System.out.println("Collections.Participant is already registered");
+            System.out.println("Participante com rg " + participant.rg + " já inserido. \n");
             return -1;
         }
 
@@ -36,18 +35,25 @@ public class JungleRace {
 
         Integer tax =  getRegistrationTax(participant);
 
-        System.out.println("Need to pay R$ " + tax);
+        System.out.println(participant.firstName + " inserido com sucesso.");
+        System.out.println("Valor R$ " + tax + "\n");
 
         return tax;
 
     }
 
     public boolean removeParticipant(Participant participant){
-        return participants.remove(participant);
+        return this.removeParticipant(participant.rg);
     }
 
     public boolean removeParticipant(int rgToRemove){
-        return participants.removeIf(p -> p.rg == rgToRemove);
+        boolean removed =  participants.removeIf(p -> p.rg == rgToRemove);
+
+        String message = removed ? "Participante com rg " + rgToRemove + " removido com sucesso. \n" : "Participante não encontrado. \n";
+
+        System.out.println(message);
+
+        return removed;
     }
 
     private Integer getRegistrationTax(Participant participant){

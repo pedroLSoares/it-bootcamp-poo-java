@@ -68,6 +68,7 @@ public class Collections {
         smallCircuit.removeParticipant(p1);
 
         System.out.println(smallCircuit.participants);
+        System.out.println(advancedCircuit.participants);
 
     }
 
@@ -81,7 +82,7 @@ public class Collections {
 
     public static void main(String[] args) {
 //        findMaxAndMinTemperature();
-        // racingUsingClasses();
-        racingScanner();
+         racingUsingClasses();
+        //racingScanner();
     }
 }
