@@ -1,5 +1,7 @@
 package Exceptions;
 
+import java.io.IOException;
+
 public class ExceptionsPractice {
 
     public static void divisionError(){
@@ -10,10 +12,13 @@ public class ExceptionsPractice {
     }
 
     public static void main(String[] args) {
-        try{
-            divisionError();
+        try(ExampleRepository repository = new ExampleRepository()){
+            //divisionError();
+            repository.save();
         }catch (ArithmeticException e){
-            throw new IllegalArgumentException("Não pode ser dividido por zero");
+            throw new CustomException("Não pode ser dividido por zero");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
