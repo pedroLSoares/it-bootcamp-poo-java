@@ -32,9 +32,9 @@ public class Participant {
 
     @Override
     public boolean equals(Object obj) {
-
         if(obj instanceof Participant){
-            return true;
+            Participant p = (Participant) obj;
+            return p.rg.equals(this.rg);
         }
         return false;
     }
