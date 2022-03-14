@@ -1,13 +1,8 @@
 package AbstractClasseAndInterfaces.PrintDocuments;
 
-abstract class Document {
-    private String fileName;
+public interface Document {
 
-    public Document(String fileName) {
-        this.fileName = fileName;
-    }
+    public String getContent();
 
-    public String getFileName() {
-        return fileName;
-    }
+
 }

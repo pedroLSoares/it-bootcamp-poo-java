@@ -1,23 +1,20 @@
 package AbstractClasseAndInterfaces.PrintDocuments;
 
+import Classes.Ability;
 import Classes.Person;
 
 import java.util.List;
 
-public class Curriculum extends Document{
+public class Curriculum implements Document{
     private Person person;
-    private List<String> abilities;
-
-    public Curriculum(String fileName) {
-        super(fileName);
-    }
+    private List<Ability> abilities;
 
     public Curriculum setPerson(Person person) {
         this.person = person;
         return this;
     }
 
-    public Curriculum setAbilities(List<String> abilities) {
+    public Curriculum setAbilities(List<Ability> abilities) {
         this.abilities = abilities;
         return this;
     }
@@ -26,7 +23,12 @@ public class Curriculum extends Document{
         return person;
     }
 
-    public List<String> getAbilities() {
+    public List<Ability> getAbilities() {
         return abilities;
+    }
+
+    @Override
+    public String getContent() {
+        return person + "\n" + abilities + "\n";
     }
 }

@@ -1,14 +1,11 @@
 package AbstractClasseAndInterfaces.PrintDocuments;
 
-public class PDFBook extends Document{
+public class PDFBook implements Document{
     private String title;
     private String genre;
     private String authorName;
     private int pagesNumber;
 
-    public PDFBook(String fileName) {
-        super(fileName);
-    }
 
     public PDFBook setTitle(String title) {
         this.title = title;
@@ -28,5 +25,10 @@ public class PDFBook extends Document{
     public PDFBook setPagesNumber(int pagesNumber) {
         this.pagesNumber = pagesNumber;
         return this;
+    }
+
+    @Override
+    public String getContent() {
+        return "Título: " + title + "\nGenero: " + genre + "\nAutor: " + authorName + "\nNúmero de páginas: " + pagesNumber;
     }
 }

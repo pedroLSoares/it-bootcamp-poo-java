@@ -1,20 +1,20 @@
 package AbstractClasseAndInterfaces.PrintDocuments;
 
+import Classes.Ability;
 import Classes.Person;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 public class PrintDocuments {
 
     public static void main(String[] args) throws IOException {
-        Curriculum curriculum = new Curriculum("curriculum");
+        Curriculum curriculum = new Curriculum();
         Person person = new Person("2", "Jonas", 23, 180, 75.4);
-        curriculum.setPerson(person).setAbilities(new ArrayList<>());
+        Ability ability1 = new Ability("Java", 10);
+        curriculum.setPerson(person).setAbilities(List.of(ability1));
 
-        PDFBook pdfBook = new PDFBook("pdfbook.pdf");
+        PDFBook pdfBook = new PDFBook();
         pdfBook.setAuthorName("Pedro").setGenre("Fantasy").setPagesNumber(250).setTitle("Book title");
 
 
