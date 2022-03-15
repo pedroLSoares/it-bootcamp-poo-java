@@ -43,6 +43,26 @@ public class Person {
         return age >= 18;
     }
 
+    public String getID() {
+        return ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
     @Override
     public String toString() {
         Map<String, String> infos = new HashMap<>();

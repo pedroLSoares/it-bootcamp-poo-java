@@ -28,7 +28,8 @@ public class PDFBook implements Document{
     }
 
     @Override
-    public String getContent() {
-        return "Título: " + title + "\nGenero: " + genre + "\nAutor: " + authorName + "\nNúmero de páginas: " + pagesNumber;
+    public DocumentObject getContent() {
+        return new DocumentObject(title, null, pagesNumber, "Genero: " + genre);
+
     }
 }

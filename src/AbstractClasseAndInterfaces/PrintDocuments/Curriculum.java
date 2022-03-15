@@ -28,7 +28,7 @@ public class Curriculum implements Document{
     }
 
     @Override
-    public String getContent() {
-        return person + "\n" + abilities + "\n";
+    public DocumentObject getContent() {
+        return new DocumentObject(person.toString(), abilities.toString(), 1);
     }
 }

@@ -27,7 +27,7 @@ public class Report implements Document{
     }
 
     @Override
-    public String getContent() {
-        return "Autor: " + authorName + "\nRevisor: " + reviewerName + "\n Número de páginas: " + pagesNumber + "\nConteúdo: " + text;
+    public DocumentObject getContent() {
+        return new DocumentObject(authorName, text, pagesNumber, "Revisor: " + reviewerName);
     }
 }
