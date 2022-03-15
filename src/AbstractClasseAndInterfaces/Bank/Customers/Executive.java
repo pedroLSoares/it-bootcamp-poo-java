@@ -1,4 +1,8 @@
-package AbstractClasseAndInterfaces.Bank;
+package AbstractClasseAndInterfaces.Bank.Customers;
+
+import AbstractClasseAndInterfaces.Bank.Transactions.Deposit;
+import AbstractClasseAndInterfaces.Bank.Transactions.Transaction;
+import AbstractClasseAndInterfaces.Bank.Transactions.Transferency;
 
 public class Executive extends Customer{
     public void deposit(){

@@ -1,4 +1,4 @@
-package AbstractClasseAndInterfaces.Bank;
+package AbstractClasseAndInterfaces.Bank.Transactions;
 
 public class ServicePayment implements Transaction{
     @Override

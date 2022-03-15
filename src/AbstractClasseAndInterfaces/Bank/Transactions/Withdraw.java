@@ -1,4 +1,4 @@
-package AbstractClasseAndInterfaces.Bank;
+package AbstractClasseAndInterfaces.Bank.Transactions;
 
 public class Withdraw implements Transaction{
     @Override

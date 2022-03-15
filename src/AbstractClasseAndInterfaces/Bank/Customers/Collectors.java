@@ -1,4 +1,8 @@
-package AbstractClasseAndInterfaces.Bank;
+package AbstractClasseAndInterfaces.Bank.Customers;
+
+import AbstractClasseAndInterfaces.Bank.Transactions.Balance;
+import AbstractClasseAndInterfaces.Bank.Transactions.Transaction;
+import AbstractClasseAndInterfaces.Bank.Transactions.Withdraw;
 
 public class Collectors extends Customer{
     public void consultBalance(){
