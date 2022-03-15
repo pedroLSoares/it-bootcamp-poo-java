@@ -51,7 +51,11 @@ public class Main {
         List<Veichle> sortedByBrand =  garage.getVeichles().stream().sorted(Comparator.comparing(Veichle::getBrand)).collect(Collectors.toList());
         List<Veichle> below1000 = garage.getVeichles().stream().filter(veichle -> veichle.getPrice().compareTo(new BigDecimal(1000)) < 0).collect(Collectors.toList());
         List<Veichle> higher1000 = garage.getVeichles().stream().filter(veichle -> veichle.getPrice().compareTo(new BigDecimal(1000)) > 0 || veichle.getPrice().compareTo(new BigDecimal(1000)) == 0).collect(Collectors.toList());
-        BigDecimal mediumValue = BigDecimal.valueOf(garage.getVeichles().stream().mapToDouble(v -> v.getPrice().doubleValue()).average().orElse(0)).setScale(2, RoundingMode.HALF_EVEN);
+        BigDecimal mediumValue = garage.getVeichles().stream()
+                .map(Veichle::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add)
+                .divide(new BigDecimal(garage.getVeichles().size()), 2, RoundingMode.HALF_EVEN);
+
 
         System.out.println("Original" + garage.getVeichles());
         System.out.println("By Price: " + sortedByPrice);
