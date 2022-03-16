@@ -52,7 +52,7 @@ public class TerminalMarketService {
 
     private void itemsOptions(){
         try {
-            String[] options = {"", "createItem"};
+            String[] options = {"findItem", "createItem", "removeItem", "updateItem"};
             executeOptions(options, new ItemScannerService(sc));
 
         } catch (Exception e) {
