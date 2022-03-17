@@ -6,9 +6,7 @@ import Supermarket.Repository.CustomerRepository;
 import Supermarket.Repository.ItemRepository;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 public class ItemScannerService {
 
@@ -78,7 +76,6 @@ public class ItemScannerService {
         }
 
         System.out.println(item);
-
 
         System.out.print("Digite o novo código ou deixe em branco para manter: ");
         String inputCode = sc.nextLine();

@@ -11,6 +11,15 @@ public class Invoice {
     private List<Item> items;
     private BigDecimal totalPrice;
 
+    public Invoice(int ID, Customer customer, List<Item> items) {
+        this.ID = ID;
+        this.customer = customer;
+        this.items = items;
+        totalPrice = items.stream()
+                .map(item -> item.getUnitCost().multiply(new BigDecimal(item.getQtyBought())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
     public Invoice(Customer customer, List<Item> items) {
         this.customer = customer;
         this.items = items;

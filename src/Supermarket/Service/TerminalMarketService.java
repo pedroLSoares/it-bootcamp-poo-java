@@ -62,7 +62,7 @@ public class TerminalMarketService {
 
     private void invoiceOptions(){
         try {
-            String[] options = {"findInvoice", "createInvoice"};
+            String[] options = {"findInvoice", "createInvoice", "removeInvoice", "updateInvoice"};
             executeOptions(options, new InvoiceScannerService(sc));
 
         } catch (Exception e) {
@@ -86,7 +86,7 @@ public class TerminalMarketService {
         System.out.println("2 - Incluir");
         System.out.println("3 - Remover");
         System.out.println("4 - Editar");
-        System.out.println("5 - Voltar");
+        System.out.println("0 - Voltar");
 
         return sc.nextInt();
     }
@@ -97,7 +97,7 @@ public class TerminalMarketService {
 
             int selectedOption = getSelectedOption();
 
-            if(selectedOption == 5){
+            if(selectedOption == 0){
                 showMenu();
                 return;
             }

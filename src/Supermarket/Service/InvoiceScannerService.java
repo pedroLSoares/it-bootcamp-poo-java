@@ -7,6 +7,7 @@ import Supermarket.Repository.CustomerRepository;
 import Supermarket.Repository.InvoiceRepository;
 import Supermarket.Repository.ItemRepository;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -104,5 +105,125 @@ public class InvoiceScannerService {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public void removeInvoice(){
+        System.out.print("Digite o ID: ");
+
+        int id = sc.nextInt();
+
+        boolean removed = invoiceRepository.delete(id);
+
+        String message = removed ? "Removido com sucesso!" : "Fatura não encontrada";
+
+        System.out.println(message);
+    }
+
+    public boolean updateInvoice(){
+        try{
+            String[] options = {"editItemQty", "addInvoiceItem"};
+            System.out.print("Digite o ID: ");
+
+            int id = sc.nextInt();
+
+            Optional<Invoice> invoice = invoiceRepository.findOne(id);
+            if(invoice.isEmpty()){
+                System.out.println("Cliente não encontrado");
+                return updateInvoice();
+            }
+
+            System.out.println(invoice);
+
+
+            System.out.print("Digite o ID do novo cliente ou digite 0 para manter: ");
+            int idNewCustomer = sc.nextInt();
+
+            System.out.println("Selecione: ");
+            System.out.println("1 - Editar quantidade comprada de um item");
+            System.out.println("2 - Incluir item");
+            System.out.println("3 - Remover item");
+            System.out.println("0 - Manter atual");
+
+            int selectedItemOption = sc.nextInt();
+
+
+
+            Method method = InvoiceScannerService.class.getDeclaredMethod(options[selectedItemOption - 1], Invoice.class);
+
+            method.invoke(this, invoice.get());
+
+
+            Optional<Customer> customerFound = customerRepository.findOne(idNewCustomer);
+
+            if(customerFound.isEmpty()){
+                System.out.println("Cliente com ID " + idNewCustomer + "não encontrado.");
+            }
+
+            Customer newCustomer = customerFound.isEmpty() ? customerFound.get() : customerFound.get();
+
+
+            Invoice invoiceToUpdate = new Invoice(invoice.get().getID(), newCustomer, invoice.get().getItems());
+            invoiceRepository.update(invoiceToUpdate);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public void editItemQty(Invoice invoice){
+        System.out.print("Informe o código: ");
+        sc.nextLine();
+        String code = sc.nextLine();
+
+        Optional<Item> itemFound = invoice.getItems().stream().filter(i -> i.getCode().equals(code)).findFirst();
+
+        if (itemFound.isEmpty()){
+            System.out.println("Produto não encontrado");
+            editItemQty(invoice);
+            return;
+        }
+
+        System.out.println(itemFound.get());
+
+        System.out.print("Informe a nova quantidade ou 0 para cancelar: ");
+        int newQty = sc.nextInt();
+
+        itemFound.get().setQtyBought(newQty);
+    }
+
+    public void addInvoiceItem(Invoice invoice){
+        itemScannerService.listAllItems();
+        System.out.println("Informe o código do item");
+        System.out.println("Digite 0 para finalizar");
+
+        while (true) {
+            int finish = sc.hasNextInt() ? sc.nextInt() : 1;
+            if (finish == 0) {
+                break;
+            }
+
+            String code = sc.nextLine();
+
+            List<Item> items = itemRepository.findAll();
+            Optional<Item> item = items.stream().filter(i -> i.getCode().equals(code)).findFirst();
+
+            if (item.isEmpty()) {
+                System.out.println("Produto não cadastrado");
+                continue;
+            }
+
+            System.out.print("Informe a quantidade: ");
+            int qty = sc.nextInt();
+
+            item.get().setQtyBought(qty);
+
+            invoice.getItems().add(item.get());
+
+            System.out.println("Produto adicionado." +  invoice.getItems());
+
+        }
+
     }
 }
